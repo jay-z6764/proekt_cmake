@@ -1,0 +1,39 @@
+float *A = malloc(N * sizeof(float));
+    int k = 0;
+
+    for (int i = 0; i < N; i++) {
+       float val = Matrix[i * M + 2];
+       if (val < 0) {
+          A[k] = val;
+          k++;
+       }
+    }
+
+    printf("\nОтрицательные элементы 3-го столбца (массив A):\n");
+    for (int i = 0; i < k; i++) {
+       printf("%f ", A[i]);
+    }
+    printf("\nРазмер массива k = %d\n", k);
+
+    float S = 0.0;
+    if (k > 0) {
+       for (int i = 0; i < k; i++) {
+          S += (i * pow(A[i], 3) + sin(A[i]));
+       }
+    }
+    printf("Вычисленная сумма S = %f\n", S);
+    printf("Заменяем элемент Matrix[2][1] (было %f) на %f\n", Matrix[2 * M + 1], S);
+    Matrix[2 * M + 1] = S;
+
+    printf("\nИтоговая матрица:\n");
+    for (int i = 0; i < N; i++) {
+       for (int j = 0; j < M; j++) {
+          printf("| %f |", Matrix[i * M + j]);
+       }
+       printf("\n");
+    }
+
+    free(Matrix);
+    free(A);
+    return 0;
+}
